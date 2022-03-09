@@ -1,0 +1,22 @@
+stages:
+  - upload
+
+UPLOAD ASSETS:
+  stage: upload
+
+  before_script:
+    - chmod +x ./config/upload.sh
+
+  script:
+    - ./config/upload.sh $BASIC_AUTH
+
+  only:
+    - main
+
+  except:
+    changes:
+      - config/*
+
+  tags:
+    - ios
+    - android
